@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import "./App.css";
+import Header from "./Header";
+import Home from "./Home";
+import { useSelector } from "react-redux";
+import styled from "styled-components";
 
 function App() {
+  const { Them } = useSelector((state) => state);
+  console.log(Them);
+  const [addShowToggle, setAddShowToggle] = useState(false);
+  const [aboutShowToggle, setAboutShowToggle] = useState(false);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      className="App"
+      style={{
+        backgroundColor: Them.theme ? "black" : "white",
+      }}
+    >
+      <Header setAddShowToggle={setAddShowToggle} />
+      <Home setAboutShowToggle={setAboutShowToggle} aboutShowToggle={aboutShowToggle} addShowToggle={addShowToggle} setAddShowToggle={setAddShowToggle} />
+      
     </div>
   );
 }
